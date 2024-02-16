@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:practice/products/my_product.dart';
+import 'package:practice/widgets/prod_card.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -23,13 +25,26 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         child: Text(
           name,
-          style: const TextStyle(color: Colors.white,fontSize: 11),
+          style: const TextStyle(color: Colors.white, fontSize: 11),
         ),
       );
+  _buildAllProducts() => GridView.builder(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            childAspectRatio: (100 / 140),
+            crossAxisSpacing: 12,
+            mainAxisSpacing: 12),
+        scrollDirection: Axis.vertical,
+        itemCount: MyProduct.allProducts.length,
+        itemBuilder: (context, index) {
+          final allProducts = MyProduct.allProducts[index];
+          return ProductCard(product: allProducts);
+        },
+      );
+
   @override
   Widget build(BuildContext context) {
     return Column(
-      
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
@@ -38,7 +53,9 @@ class _HomeScreenState extends State<HomeScreen> {
             "Our-Products",
             // textAlign: TextAlign.left,
             style: GoogleFonts.poppins(
-                fontSize: 10, color:Colors.black,),
+              fontSize: 10,
+              color: Colors.black,
+            ),
           ),
         ),
         Row(
@@ -49,6 +66,8 @@ class _HomeScreenState extends State<HomeScreen> {
             _buildProductCategory(index: 2, name: "Jackets"),
           ],
         ),
+        const SizedBox(height: 20,),
+        Expanded(child: _buildAllProducts(),),
       ],
     );
   }

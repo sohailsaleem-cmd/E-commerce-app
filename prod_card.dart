@@ -15,7 +15,7 @@ class _ProductCardState extends State<ProductCard> {
     return Container(
       width: MediaQuery.of(context).size.width /2,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(12),
           color: Colors.grey.withOpacity(0.1)),
       child: Column(
         children: [

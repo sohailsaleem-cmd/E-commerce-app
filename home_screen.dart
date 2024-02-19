@@ -13,10 +13,6 @@ class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
   final tabs = [
     const HomeScreen(),
-    // const Center(
-    //   // child: Text('home'),
-    //   HomePage(),
-    // ),
     const Center(
       child: Text('Favorite'),
     ),
@@ -64,10 +60,8 @@ class _HomePageState extends State<HomePage> {
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
             label: "profile",
-          backgroundColor: Colors.blue,
-
+            backgroundColor: Colors.blue,
           ),
-
         ],
         onTap: (index) {
           setState(() {

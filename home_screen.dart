@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:practice/hompage/cart_deatail.dart';
+import 'package:practice/hompage/fav_screen.dart';
 import 'package:practice/hompage/home_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -13,9 +15,7 @@ class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
   final tabs = [
     const HomeScreen(),
-    const Center(
-      child: Text('Favorite'),
-    ),
+    const FavoriteScreen(),
     const Center(
       child: Text('profile'),
     ),
@@ -25,13 +25,29 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 20,
+        toolbarHeight: 40,
         title: Text(
           'E-Commerce Shop',
           style: GoogleFonts.poppins(color: Colors.white, fontSize: 10),
         ),
         centerTitle: true,
         backgroundColor: Colors.red,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 2),
+            child: IconButton(
+                onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const CartDetail(),
+                      ),
+                    ),
+                icon: const Icon(
+                  Icons.add_shopping_cart_outlined,
+                  color: Colors.white,
+                )),
+          )
+        ],
       ),
       body: tabs[_currentIndex],
 
